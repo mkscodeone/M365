@@ -360,6 +360,11 @@
           "title": "DIT User Permission"
         }
       ]
+    },
+    {
+      "verb": "installSolution",
+      "id": "252474e7-5180-49f5-9a00-6a0c66c4e42e",
+      "name": "spfx-dit-fta-pages-client-side-solution"
     }
   ],
   "bindata": {},
