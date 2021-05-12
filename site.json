@@ -1,0 +1,87 @@
+{
+  "$schema": "schema.json",
+  "actions": [
+    {
+      "verb": "setRegionalSettings",
+      "timeZone": 24,
+      "locale": 1033,
+      "sortOrder": 25,
+      "hourFormat": "24"
+    },
+    {
+      "verb": "setSiteExternalSharingCapability",
+      "capability": "ExternalUserAndGuestSharing"
+    },
+    {
+      "verb": "createSiteColumnXml",
+      "schemaXml": "<Field ID=\"{740762a2-ab26-4d91-bbdc-d5fa7e17caff}\" Type=\"TaxonomyFieldType\" Name=\"MyTestMMDV1\" SourceID=\"http://schemas.microsoft.com/sharepoint/v3\" StaticName=\"MyTestMMDV1\" DisplayName=\"My Test Tax V1\" Group=\"DIT FTA\" ShowField=\"Term1033\"  Required=\"FALSE\" EnforceUniqueValues=\"FALSE\" Mult=\"FALSE\">  <Default />  <Customization>   <ArrayOfProperty>   <Property> <Name>SspId</Name> <Value xmlns:q1=\"http://www.w3.org/2001/XMLSchema\" p4:type=\"q1:string\" xmlns:p4=\"http://www.w3.org/2001/XMLSchema-instance\">607a9906f6414c95aa3d97bb91e89463</Value>    </Property>    <Property> <Name>GroupId</Name> <Value xmlns:p4=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:q2=\"http://www.w3.org/2001/XMLSchema\" p4:type=\"q2:string\">6b5b6f55-6f0a-46b8-bfe4-6ca6708929f5</Value>    </Property>    <Property> <Name>TermSetId</Name> <Value xmlns:p4=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:q2=\"http://www.w3.org/2001/XMLSchema\" p4:type=\"q2:string\">7b238756-d188-4503-973a-7752f4520a91</Value>    </Property>    <Property> <Name>TextField</Name> <Value xmlns:p4=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:q6=\"http://www.w3.org/2001/XMLSchema\" p4:type=\"q6:string\">b9ad85c1-bbfa-4ee5-9413-f82dfad96fa6</Value>    </Property>   </ArrayOfProperty>  </Customization> </Field>",
+      "pushChanges": true
+    },
+    {
+      "verb": "createSiteColumnXml",
+      "schemaXml": "
+	  <Field Type=\"Note\"  DisplayName=\"MyTestMMDV1_0\"  StaticName=\"MyTestMMDV1TaxHTField0\"  Name=\"MyTestMMDV1TaxHTField0\"  ID=\"{b9ad85c1-bbfa-4ee5-9413-f82dfad96fa6}\"  ShowInViewForms=\"FALSE\"  Required=\"FALSE\"  Hidden=\"TRUE\"  CanToggleHidden=\"TRUE\"  Group=\"DIT FTA\"  RowOrdinal=\"0\"  />
+	  ",
+      "pushChanges": true
+    },
+    {
+      "verb": "createContentType",
+      "name": "MMD V1 Ctype",
+      "description": "MMD V1 Content Type",
+      "parentName": "Item",
+      "parentId": "0x01",
+      "id": "0x01006ab246b5435f413eb276c17d2de904db",
+      "hidden": false,
+      "subactions": [
+        {
+          "verb": "addSiteColumn",
+          "internalName": "Title"
+        },
+        {
+          "verb": "addSiteColumn",
+          "internalName": "MyTestMMDV1"
+        }
+      ]
+    },
+    {
+      "verb": "createSPList",
+      "listName": "MKS Test List",
+      "templateType": 100,
+      "subactions": [
+        {
+          "verb": "addContentType",
+          "name": "MMD V1 Ctype"
+        },
+        {
+          "verb": "addSPView",
+          "name": "MyTest",
+          "query": "",
+          "rowLimit": 100,
+          "isPaged": true,
+          "makeDefault": true,
+          "scope": "Default",
+          "formatterJSON": "{}",
+          "viewFields": [
+            "Title",
+            "MyTestMMDV1"
+          ]
+        },
+        {
+          "verb": "addSiteColumn",
+          "internalName": "MyTestMMDV1",
+          "addToDefaultView": true
+        },
+        {
+          "verb": "setDescription",
+          "description": "MKS Test List"
+        },
+        {
+          "verb": "setTitle",
+          "title": "MKS Test List"
+        }
+      ]
+    }
+  ],
+  "bindata": {},
+  "version": 1
+}
