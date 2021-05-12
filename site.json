@@ -69,6 +69,26 @@
       "pushChanges": true
     },
     {
+      "verb": "createSiteColumnXml",
+      "schemaXml": "<Field ID=\"{2f78379f-db0f-4fef-bd36-12fc303f59d8}\"\n             Name=\"DITFTAUserName\"\n             DisplayName=\"User\"\n             Type=\"User\"\n             Required=\"FALSE\"\n             Group=\"DIT FTA\" />",
+      "pushChanges": true
+    },
+    {
+      "verb": "createSiteColumnXml",
+      "schemaXml": "<Field ID=\"{e24f038d-7029-459c-b1cb-3c19df481992}\"\n             Name=\"DITFTAUserNames\"\n             DisplayName=\"Users\"\n             Type=\"UserMulti\"\n             Required=\"FALSE\"\n             Group=\"DIT FTA\" />",
+      "pushChanges": true
+    },
+    {
+      "verb": "createSiteColumnXml",
+      "schemaXml": "\n<Field ID=\"{1384fdf4-f3ff-4aad-8b59-665827265fd9}\"\n             Name=\"DITFTAUserRole\"\n             DisplayName=\"Role\"\n             Type=\"Choice\"\n           Required=\"FALSE\"\n             Group=\"DIT FTA\" >\n        <CHOICES>\n          <CHOICE>Owner</CHOICE>\n          <CHOICE>Member</CHOICE>\n          <CHOICE>Visitor</CHOICE>\n          <CHOICE>Restricted Viewer</CHOICE>\n        </CHOICES>\n      </Field>   ",
+      "pushChanges": true
+    },
+    {
+      "verb": "createSiteColumnXml",
+      "schemaXml": "\n     <Field ID=\"{0b8840ad-b637-4f7a-a287-fe8449600b72}\" \n       Name=\"DITFTALookupPermArea\"  \n       DisplayName=\"Permission Area\"  \n       Type=\"Lookup\"  \n       Required=\"TRUE\"  \n       ShowField=\"Title\"  \n       List=\"Lists/DITPermissionArea\"></Field> ",
+      "pushChanges": true
+    },
+    {
       "verb": "createContentType",
       "name": "DIT Change History",
       "description": "DIT Change History",
@@ -135,6 +155,37 @@
         {
           "verb": "addSiteColumn",
           "internalName": "DITFTAItemIsDisabled"
+        }
+      ]
+    },
+    {
+      "verb": "createContentType",
+      "name": "DIT User Permissions",
+      "description": "DIT User Permissions",
+      "parentName": "Item",
+      "parentId": "0x01",
+      "id": "0x01005ae1cc2cb35a485cb5af3342830f13fe",
+      "hidden": false,
+      "subactions": [
+        {
+          "verb": "addSiteColumn",
+          "internalName": "Title"
+        },
+        {
+          "verb": "addSiteColumn",
+          "internalName": "DITFTALookupPermissionAreaType"
+        },
+        {
+          "verb": "addSiteColumn",
+          "internalName": "DITFTALookupPermArea"
+        },
+        {
+          "verb": "addSiteColumn",
+          "internalName": "DITFTAUserName"
+        },
+        {
+          "verb": "addSiteColumn",
+          "internalName": "DITFTAUserRole"
         }
       ]
     },
@@ -252,6 +303,61 @@
         {
           "verb": "setTitle",
           "title": "DIT Permission Area"
+        }
+      ]
+    },
+    {
+      "verb": "createSPList",
+      "listName": "DITUserPermission",
+      "templateType": 100,
+      "subactions": [
+        {
+          "schemaXml": "<Field ID=\"{0b8840ad-b637-4f7a-a287-fe8449600b72}\" \n       Name=\"DITFTALookupPermArea\"  \n       DisplayName=\"Permission Area\"  \n       Type=\"Lookup\"  \n       Required=\"TRUE\"  \n       ShowField=\"Title\"  \n         Group=\"DIT FTA\" />",
+          "targetListName": "DIT Permission Area",
+          "addToDefaultView": true,
+          "verb": "addSPLookupFieldXml"
+        },
+        {
+          "schemaXml": " <Field ID=\"{147464d7-1e89-4231-938d-61457fb6fa39}\" \n       Name=\"DITFTALookupPermissionAreaType\"  \n       DisplayName=\"Area Type\"  \n       Type=\"Lookup\"  \n       Required=\"TRUE\"  \n       ShowField=\"Title\" />",
+          "targetListName": "DIT Permission Type",
+          "addToDefaultView": true,
+          "verb": "addSPLookupFieldXml"
+        },
+        {
+          "verb": "addContentType",
+          "name": "DIT User Permissions"
+        },
+        {
+          "verb": "removeContentType",
+          "name": "Item"
+        },
+        {
+          "verb": "addSiteColumn",
+          "internalName": "LinkTitle",
+          "addToDefaultView": true
+        },
+        {
+          "verb": "addSiteColumn",
+          "internalName": "DITFTALookupPermissionAreaType",
+          "addToDefaultView": true
+        },
+        {
+          "verb": "addSiteColumn",
+          "internalName": "DITFTALookupPermArea",
+          "addToDefaultView": true
+        },
+        {
+          "verb": "addSiteColumn",
+          "internalName": "DITFTAUserRole",
+          "addToDefaultView": true
+        },
+        {
+          "verb": "setDescription",
+          "description": "DIT User Permission"
+        },
+        {
+          "verb": "setTitle",
+          "title": "DIT User Permission"
         }
       ]
     }
