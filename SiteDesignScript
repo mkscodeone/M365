@@ -1,0 +1,25 @@
+Site Design
+
+
+$SiteScriptFile = "c:\temp\site.json"
+$SiteScriptId = Get-SPOSiteScript | where { $_.Title -eq "Crescent Site Script"} 
+
+
+
+ 
+#Set Parameters
+$AdminCenterURL = "https://instalogixtech-admin.sharepoint.com/"
+ 
+#Connect to SharePoint Online
+Connect-SPOService -Url $AdminCenterURL -Credential (Get-Credential)
+ 
+#Add Site Script
+$SiteScript = $JSONScript | Add-SPOSiteScript -Title "Crescent Site Script"
+ 
+#Add Site Design
+$WebTemplate = "64" #64 = Team Site, 68 = Communication Site, 1 = Team Site without Group
+Add-SPOSiteDesign -Title "Crescent Site Template" -WebTemplate $WebTemplate -SiteScripts $SiteScript.ID -Description "Crescent Site Template
+
+
+Set-SPOSiteScript -Identity $SiteScriptId.Id -Content (Get-Content $SiteScriptFile -Raw)
+
