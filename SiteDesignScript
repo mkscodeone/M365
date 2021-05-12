@@ -8,7 +8,7 @@ $SiteScriptId = Get-SPOSiteScript | where { $_.Title -eq "Crescent Site Script"}
 
  
 #Set Parameters
-$AdminCenterURL = "https://instalogixtech-admin.sharepoint.com/"
+$AdminCenterURL = "https://XXXXXXXXXXX-admin.sharepoint.com/"
  
 #Connect to SharePoint Online
 Connect-SPOService -Url $AdminCenterURL -Credential (Get-Credential)
