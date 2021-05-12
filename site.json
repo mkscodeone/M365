@@ -35,7 +35,7 @@
     },
     {
       "verb": "createSiteColumnXml",
-      "schemaXml": " <Field ID=\"{147464d7-1e89-4231-938d-61457fb6fa39}\" \n       Name=\"DITFTALookupPermissionAreaType\"  \n       DisplayName=\"Area Type\"  \n       Type=\"Lookup\"  \n       Required=\"TRUE\"  \n       ShowField=\"Title\"  \n       List=\"Lists/DITPermissionType\"></Field>  ",
+      "schemaXml": " <Field ID=\"{147464d7-1e89-4231-938d-61457fb6fa39}\" \n       Name=\"DITFTALookupPermissionAreaType\"  \n       DisplayName=\"Area Type\"  \n       Type=\"Lookup\"  \n       Required=\"TRUE\"  \n       ShowField=\"Title\"  \n       List=\"Lists/DITPermissionType\"  Group=\"DIT FTA\" />",
       "pushChanges": true
     },
     {
