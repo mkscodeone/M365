@@ -1,0 +1,395 @@
+{
+  "$schema": "schema.json",
+  "actions": [
+    {
+      "verb": "setRegionalSettings",
+      "timeZone": 24,
+      "locale": 1033,
+      "sortOrder": 25,
+      "hourFormat": "24"
+    },
+    {
+      "verb": "createSiteColumnXml",
+      "schemaXml": " <Field ID=\"{639c0dd5-633f-4a08-84bd-a274376c18ae}\"\n             Name=\"DITFTAItemChangeType\"\n             DisplayName=\"Change Type\"\n             Type=\"Text\"\n             Required=\"FALSE\"\n             Group=\"DIT FTA\" />",
+      "pushChanges": true
+    },
+    {
+      "verb": "createSiteColumnXml",
+      "schemaXml": "<Field ID=\"{2e21b074-b6a3-439d-82b7-c7e7d14b9432}\"\n             Name=\"DITFTAChangeDescription\"\n             DisplayName=\"Description\"\n             Type=\"Note\"\n             Required=\"FALSE\"\n             Group=\"DIT FTA\" />",
+      "pushChanges": true
+    },
+    {
+      "verb": "createSiteColumnXml",
+      "schemaXml": "<Field ID=\"{e7685f8c-2af8-4e13-9016-dec0a2d6156b}\"\n             Name=\"DITFTAItemIsDeleted\"\n             DisplayName=\"Is Deleted\"\n             Type=\"Boolean\"\n             Required=\"FALSE\"\n             Group=\"DIT FTA\" />",
+      "pushChanges": true
+    },
+    {
+      "verb": "createSiteColumnXml",
+      "schemaXml": "<Field ID=\"{a41b91dc-d65d-445d-a41e-a4561694072d}\"\n             Name=\"DITFTAChangeUserName\"\n             DisplayName=\"Change User Name\"\n             Type=\"Text\"\n             Required=\"FALSE\"\n             Group=\"DIT FTA\" />",
+      "pushChanges": true
+    },
+    {
+      "verb": "createSiteColumnXml",
+      "schemaXml": "  <Field ID=\"{ac9a27d5-8fa8-4aeb-9bc6-5dd662de84ae}\"\n             Name=\"DITFTAItemInternalName\"\n             DisplayName=\"Internal Name\"\n             Type=\"Text\"\n             Required=\"FALSE\"\n             Group=\"DIT FTA\" />",
+      "pushChanges": true
+    },
+    {
+      "verb": "createSiteColumnXml",
+      "schemaXml": " <Field ID=\"{147464d7-1e89-4231-938d-61457fb6fa39}\" \n       Name=\"DITFTALookupPermissionAreaType\"  \n       DisplayName=\"Area Type\"  \n       Type=\"Lookup\"  \n       Required=\"TRUE\"  \n       ShowField=\"Title\"  \n       List=\"Lists/DITPermissionType\"  Group=\"DIT FTA\" />",
+      "pushChanges": true
+    },
+    {
+      "verb": "createSiteColumnXml",
+      "schemaXml": "<Field ID=\"{34f66661-b014-482e-8e48-22cca147e2b4}\"\n             Name=\"DITFTAAreaType\"\n             DisplayName=\"Area Type\"\n             Type=\"Choice\"\n           Required=\"FALSE\"\n             Group=\"DIT FTA\" >\n        <CHOICES>\n          <CHOICE>Site</CHOICE>\n          <CHOICE>Policy</CHOICE>\n          <CHOICE>Trade Agreement</CHOICE>\n        </CHOICES>\n      </Field>      ",
+      "pushChanges": true
+    },
+    {
+      "verb": "createSiteColumnXml",
+      "schemaXml": " <Field ID=\"{0fca4323-e99e-48bf-8479-f376ec6b06f7}\"\n             Name=\"DITFTAItemDescription\"\n             DisplayName=\"Description\"\n             Type=\"Text\"\n             Required=\"FALSE\"\n             Group=\"DIT FTA\" />",
+      "pushChanges": true
+    },
+    {
+      "verb": "createSiteColumnXml",
+      "schemaXml": "<Field ID=\"{8b38fec6-6bc5-47be-997d-858a81256687}\"\n             Name=\"DITFTAItemStatus\"\n             DisplayName=\"Status\"\n             Type=\"Text\"\n             Required=\"FALSE\"\n             Group=\"DIT FTA\" />",
+      "pushChanges": true
+    },
+    {
+      "verb": "createSiteColumnXml",
+      "schemaXml": "<Field ID=\"{20b62321-9de8-435e-98f4-1f48574de29b}\"\n             Name=\"DITFTAItemIsDisabled\"\n             DisplayName=\"Is Disabled\"\n             Type=\"Boolean\"\n             Required=\"FALSE\"\n             Group=\"DIT FTA\" />",
+      "pushChanges": true
+    },
+    {
+      "verb": "createSiteColumnXml",
+      "schemaXml": " <Field ID=\"{e8873455-cb51-49ea-877b-1d5007b2b0bb}\"\n            Name=\"DITFTAItemDisplayOrder\"\n            DisplayName=\"Display Order\"\n            Type=\"Number\"\n            Required=\"FALSE\"\n            Group=\"DIT FTA\" />",
+      "pushChanges": true
+    },
+    {
+      "verb": "createSiteColumnXml",
+      "schemaXml": " <Field ID=\"{b1650ea1-1e32-4f29-a14e-12e4862dcc87}\"\n            Name=\"DITFTAChangeItemID\"\n            DisplayName=\"ItemID\"\n            Type=\"Number\"\n            Required=\"FALSE\"\n            Group=\"DIT FTA\" />",
+      "pushChanges": true
+    },
+    {
+      "verb": "createSiteColumnXml",
+      "schemaXml": "<Field ID=\"{2f78379f-db0f-4fef-bd36-12fc303f59d8}\"\n             Name=\"DITFTAUserName\"\n             DisplayName=\"User\"\n             Type=\"User\"\n             Required=\"FALSE\"\n             Group=\"DIT FTA\" />",
+      "pushChanges": true
+    },
+    {
+      "verb": "createSiteColumnXml",
+      "schemaXml": "<Field ID=\"{e24f038d-7029-459c-b1cb-3c19df481992}\"\n             Name=\"DITFTAUserNames\"\n             DisplayName=\"Users\"\n             Type=\"UserMulti\"\n             Required=\"FALSE\"\n             Group=\"DIT FTA\" />",
+      "pushChanges": true
+    },
+    {
+      "verb": "createSiteColumnXml",
+      "schemaXml": "\n<Field ID=\"{1384fdf4-f3ff-4aad-8b59-665827265fd9}\"\n             Name=\"DITFTAUserRole\"\n             DisplayName=\"Role\"\n             Type=\"Choice\"\n           Required=\"FALSE\"\n             Group=\"DIT FTA\" >\n        <CHOICES>\n          <CHOICE>Owner</CHOICE>\n          <CHOICE>Member</CHOICE>\n          <CHOICE>Visitor</CHOICE>\n          <CHOICE>Restricted Viewer</CHOICE>\n        </CHOICES>\n      </Field>   ",
+      "pushChanges": true
+    },
+    {
+      "verb": "createSiteColumnXml",
+      "schemaXml": "\n     <Field ID=\"{0b8840ad-b637-4f7a-a287-fe8449600b72}\" \n       Name=\"DITFTALookupPermArea\"  \n       DisplayName=\"Permission Area\"  \n       Type=\"Lookup\"  \n       Required=\"TRUE\"  \n       ShowField=\"Title\"  \n       List=\"Lists/DITPermissionArea\"></Field> ",
+      "pushChanges": true
+    },
+    {
+      "verb": "createContentType",
+      "name": "DIT Change History",
+      "description": "DIT Change History",
+      "parentName": "Item",
+      "parentId": "0x01",
+      "id": "0x0100af26d597b6fd4c1e994f384fecfd524d",
+      "hidden": false,
+      "subactions": [
+        {
+          "verb": "addSiteColumn",
+          "internalName": "Title"
+        },
+        {
+          "verb": "addSiteColumn",
+          "internalName": "DITFTAChangeItemID"
+        },
+        {
+          "verb": "addSiteColumn",
+          "internalName": "DITFTAChangeUserName"
+        },
+        {
+          "verb": "addSiteColumn",
+          "internalName": "DITFTAItemIsDeleted"
+        },
+        {
+          "verb": "addSiteColumn",
+          "internalName": "DITFTAChangeDescription"
+        },
+        {
+          "verb": "addSiteColumn",
+          "internalName": "DITFTAItemChangeType"
+        }
+      ]
+    },
+    {
+      "verb": "createContentType",
+      "name": "DIT Permission Area Content Type",
+      "description": "DIT Permission Area Content Type",
+      "parentName": "Item",
+      "parentId": "0x01",
+      "id": "0x01006c561024663542a0930fd1f8636094b5",
+      "hidden": false,
+      "subactions": [
+        {
+          "verb": "addSiteColumn",
+          "internalName": "Title"
+        },
+        {
+          "verb": "addSiteColumn",
+          "internalName": "DITFTALookupPermissionAreaType"
+        },
+        {
+          "verb": "addSiteColumn",
+          "internalName": "DITFTAItemStatus"
+        },
+        {
+          "verb": "addSiteColumn",
+          "internalName": "DITFTAItemDisplayOrder"
+        },
+        {
+          "verb": "addSiteColumn",
+          "internalName": "DITFTAItemInternalName"
+        },
+        {
+          "verb": "addSiteColumn",
+          "internalName": "DITFTAItemIsDisabled"
+        }
+      ]
+    },
+    {
+      "verb": "createContentType",
+      "name": "DIT User Permissions",
+      "description": "DIT User Permissions",
+      "parentName": "Item",
+      "parentId": "0x01",
+      "id": "0x01005ae1cc2cb35a485cb5af3342830f13fe",
+      "hidden": false,
+      "subactions": [
+        {
+          "verb": "addSiteColumn",
+          "internalName": "Title"
+        },
+        {
+          "verb": "addSiteColumn",
+          "internalName": "DITFTALookupPermissionAreaType"
+        },
+        {
+          "verb": "addSiteColumn",
+          "internalName": "DITFTALookupPermArea"
+        },
+        {
+          "verb": "addSiteColumn",
+          "internalName": "DITFTAUserName"
+        },
+        {
+          "verb": "addSiteColumn",
+          "internalName": "DITFTAUserRole"
+        },
+        {
+          "verb": "addSiteColumn",
+          "internalName": "DITFTAItemStatus"
+        }
+      ]
+    },
+    {
+      "verb": "createSPList",
+      "listName": "DITChangeHistory",
+      "templateType": 100,
+      "subactions": [
+        {
+          "verb": "addContentType",
+          "name": "DIT Change History"
+        },
+        {
+          "verb": "removeContentType",
+          "name": "Item"
+        },
+        {
+          "verb": "addSiteColumn",
+          "internalName": "LinkTitle",
+          "addToDefaultView": true
+        },
+        {
+          "verb": "addSiteColumn",
+          "internalName": "DITFTAChangeItemID",
+          "addToDefaultView": true
+        },
+        {
+          "verb": "addSiteColumn",
+          "internalName": "DITFTAItemChangeType",
+          "addToDefaultView": true
+        },
+        {
+          "verb": "addSiteColumn",
+          "internalName": "DITFTAChangeDescription",
+          "addToDefaultView": true
+        },
+        {
+          "verb": "addSiteColumn",
+          "internalName": "DITFTAItemIsDeleted",
+          "addToDefaultView": true
+        },
+        {
+          "verb": "addSiteColumn",
+          "internalName": "DITFTAChangeUserName",
+          "addToDefaultView": true
+        },
+        {
+          "verb": "setDescription",
+          "description": "DIT Change History"
+        },
+        {
+          "verb": "setTitle",
+          "title": "DIT Change History"
+        }
+      ]
+    },
+    {
+      "verb": "createSPList",
+      "listName": "DITPermissionType",
+      "templateType": 100,
+      "subactions": [
+        {
+          "verb": "setDescription",
+          "description": "DIT Permission Type"
+        },
+        {
+          "verb": "setTitle",
+          "title": "DIT Permission Type"
+        }
+      ]
+    },
+    {
+      "verb": "createSPList",
+      "listName": "DITPermissionArea",
+      "templateType": 100,
+      "subactions": [
+        {
+          "schemaXml": " <Field ID=\"{147464d7-1e89-4231-938d-61457fb6fa39}\" \n       Name=\"DITFTALookupPermissionAreaType\"  \n       DisplayName=\"Area Type\"  \n       Type=\"Lookup\"  \n       Required=\"TRUE\"  \n       ShowField=\"Title\" />",
+          "addToDefaultView": true,
+          "targetListName": "DIT Permission Type",
+          "verb": "addSPLookupFieldXml"
+        },
+        {
+          "verb": "addContentType",
+          "name": "DIT Permission Area Content Type"
+        },
+        {
+          "verb": "removeContentType",
+          "name": "Item"
+        },
+        {
+          "verb": "addSiteColumn",
+          "internalName": "LinkTitle",
+          "addToDefaultView": true
+        },
+        {
+          "verb": "addSiteColumn",
+          "internalName": "DITFTALookupPermissionAreaType",
+          "addToDefaultView": true
+        },
+        {
+          "verb": "addSiteColumn",
+          "internalName": "DITFTAItemStatus",
+          "addToDefaultView": true
+        },
+        {
+          "verb": "addSiteColumn",
+          "internalName": "DITFTAItemDisplayOrder",
+          "addToDefaultView": true
+        },
+        {
+          "verb": "setDescription",
+          "description": "DIT Permission Area"
+        },
+        {
+          "verb": "setTitle",
+          "title": "DIT Permission Area"
+        }
+      ]
+    },
+    {
+      "verb": "createSPList",
+      "listName": "DITUserPermission",
+      "templateType": 100,
+      "subactions": [
+        {
+          "schemaXml": "<Field ID=\"{0b8840ad-b637-4f7a-a287-fe8449600b72}\" \n       Name=\"DITFTALookupPermArea\"  \n       DisplayName=\"Permission Area\"  \n       Type=\"Lookup\"  \n       Required=\"TRUE\"  \n       ShowField=\"Title\"  \n         Group=\"DIT FTA\" />",
+          "addToDefaultView": true,
+          "targetListName": "DIT Permission Area",
+          "verb": "addSPLookupFieldXml"
+        },
+        {
+          "schemaXml": " <Field ID=\"{147464d7-1e89-4231-938d-61457fb6fa39}\" \n       Name=\"DITFTALookupPermissionAreaType\"  \n       DisplayName=\"Area Type\"  \n       Type=\"Lookup\"  \n       Required=\"TRUE\"  \n       ShowField=\"Title\" />",
+          "addToDefaultView": true,
+          "targetListName": "DIT Permission Type",
+          "verb": "addSPLookupFieldXml"
+        },
+        {
+          "verb": "addContentType",
+          "name": "DIT User Permissions"
+        },
+        {
+          "verb": "removeContentType",
+          "name": "Item"
+        },
+        {
+          "verb": "addSiteColumn",
+          "internalName": "LinkTitle",
+          "addToDefaultView": true
+        },
+        {
+          "verb": "addSiteColumn",
+          "internalName": "DITFTALookupPermissionAreaType",
+          "addToDefaultView": true
+        },
+        {
+          "verb": "addSiteColumn",
+          "internalName": "DITFTALookupPermArea",
+          "addToDefaultView": true
+        },
+        {
+          "verb": "addSiteColumn",
+          "internalName": "DITFTAUserRole",
+          "addToDefaultView": true
+        },
+        {
+          "verb": "addSiteColumn",
+          "internalName": "DITFTAItemStatus",
+          "addToDefaultView": true
+        },
+        {
+          "verb": "setDescription",
+          "description": "DIT User Permission"
+        },
+        {
+          "verb": "setTitle",
+          "title": "DIT User Permission"
+        }
+      ]
+    },
+    {
+      "verb": "installSolution",
+      "id": "A646624A-93B6-4197-86D3-7173EB657AB7",
+      "name": "spfx-dit-country-policy-webpart-client-side-solution"
+    },
+    {
+      "verb": "installSolution",
+      "id": "252474e7-5180-49f5-9a00-6a0c66c4e42e",
+      "name": "spfx-dit-fta-pages-client-side-solution"
+    },
+    {
+      "verb": "triggerFlow",
+      "url": "https://prod-27.uksouth.logic.azure.com:443/workflows/d8e2f206ee4847c3a739f2cab58b388d/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=Jb4kPYxqPzf9eayLdPqcH08H8E_n7xM-JCd2gcgy6Rw",
+      "name": "GuestUserRegistration",
+      "parameters": {
+        "event": "DIT FTA HUB: Site Creation",
+        "product": "SPO"
+      }
+    }
+  ],
+  "bindata": {},
+  "version": 1
+}
