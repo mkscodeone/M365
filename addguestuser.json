@@ -1,0 +1,512 @@
+{
+    "definition": {
+        "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+        "actions": {
+            "Condition:_Add_user_if_not_in_the_group": {
+                "actions": {},
+                "else": {
+                    "actions": {
+                        "HTTP_3": {
+                            "inputs": {
+                                "authentication": {
+                                    "audience": "@triggerBody()?['Audience']",
+                                    "clientId": "@triggerBody()?['ClientID']",
+                                    "secret": "@triggerBody()?['Secret']",
+                                    "tenant": "@triggerBody()?['TenantID']",
+                                    "type": "ActiveDirectoryOAuth"
+                                },
+                                "body": {
+                                    "members@odata.bind": [
+                                        "https://graph.microsoft.com/v1.0/directoryObjects/@{variables('ExistingUserID')}"
+                                    ]
+                                },
+                                "method": "PATCH",
+                                "uri": "https://graph.microsoft.com/v1.0/groups/@{variables('Groupid')}"
+                            },
+                            "runAfter": {},
+                            "type": "Http"
+                        }
+                    }
+                },
+                "expression": {
+                    "and": [
+                        {
+                            "greater": [
+                                "@variables('UserCount')",
+                                0
+                            ]
+                        }
+                    ]
+                },
+                "runAfter": {
+                    "Condition:_If_member_exists_in_the_group": [
+                        "Succeeded"
+                    ]
+                },
+                "type": "If"
+            },
+            "Condition:_If_member_exists_in_the_group": {
+                "actions": {
+                    "Condition": {
+                        "actions": {
+                            "Parse_JSON_Group_Members": {
+                                "inputs": {
+                                    "content": "@body('Get_Group_Member')",
+                                    "schema": {
+                                        "properties": {
+                                            "@@odata.context": {
+                                                "type": "string"
+                                            },
+                                            "@@odata.count": {
+                                                "type": "integer"
+                                            },
+                                            "value": {
+                                                "items": {
+                                                    "properties": {
+                                                        "@@odata.type": {
+                                                            "type": "string"
+                                                        },
+                                                        "businessPhones": {
+                                                            "type": "array"
+                                                        },
+                                                        "displayName": {
+                                                            "type": "string"
+                                                        },
+                                                        "givenName": {},
+                                                        "id": {
+                                                            "type": "string"
+                                                        },
+                                                        "jobTitle": {},
+                                                        "mail": {
+                                                            "type": "string"
+                                                        },
+                                                        "mobilePhone": {},
+                                                        "officeLocation": {},
+                                                        "preferredLanguage": {},
+                                                        "surname": {},
+                                                        "userPrincipalName": {
+                                                            "type": "string"
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "@@odata.type",
+                                                        "id",
+                                                        "businessPhones",
+                                                        "displayName",
+                                                        "givenName",
+                                                        "jobTitle",
+                                                        "mail",
+                                                        "mobilePhone",
+                                                        "officeLocation",
+                                                        "preferredLanguage",
+                                                        "surname",
+                                                        "userPrincipalName"
+                                                    ],
+                                                    "type": "object"
+                                                },
+                                                "type": "array"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                },
+                                "runAfter": {},
+                                "type": "ParseJson"
+                            },
+                            "Set_User_Count": {
+                                "inputs": {
+                                    "name": "UserCount",
+                                    "value": "@length(body('Get_Group_Member')['value'])"
+                                },
+                                "runAfter": {
+                                    "Parse_JSON_Group_Members": [
+                                        "Succeeded"
+                                    ]
+                                },
+                                "type": "SetVariable"
+                            }
+                        },
+                        "expression": {
+                            "and": [
+                                {
+                                    "equals": [
+                                        "@outputs('Get_Group_Member')['statusCode']",
+                                        200
+                                    ]
+                                }
+                            ]
+                        },
+                        "runAfter": {
+                            "Get_Group_Member": [
+                                "Succeeded",
+                                "Failed"
+                            ]
+                        },
+                        "type": "If"
+                    },
+                    "Get_Group_Member": {
+                        "inputs": {
+                            "authentication": {
+                                "audience": "@triggerBody()?['Audience']",
+                                "clientId": "@triggerBody()?['ClientID']",
+                                "secret": "@triggerBody()?['Secret']",
+                                "tenant": "@triggerBody()?['TenantID']",
+                                "type": "ActiveDirectoryOAuth"
+                            },
+                            "method": "GET",
+                            "uri": "https://graph.microsoft.com/v1.0/groups/@{variables('Groupid')}/members?$count=true&$filter=id eq '@{variables('ExistingUserID')}'"
+                        },
+                        "runAfter": {},
+                        "type": "Http"
+                    }
+                },
+                "expression": {
+                    "and": [
+                        {
+                            "equals": [
+                                "@outputs('HTTP_Get_User')['statusCode']",
+                                200
+                            ]
+                        }
+                    ]
+                },
+                "runAfter": {
+                    "Initialize_User_Count": [
+                        "Succeeded"
+                    ]
+                },
+                "type": "If"
+            },
+            "Condition:_Invite_User_if_not_in_the_AD": {
+                "actions": {
+                    "Set_variable_2": {
+                        "inputs": {
+                            "name": "ExistingUserID",
+                            "value": "@{body('HTTP_Get_User')['id']}"
+                        },
+                        "runAfter": {},
+                        "type": "SetVariable"
+                    }
+                },
+                "else": {
+                    "actions": {
+                        "HTTP_2": {
+                            "inputs": {
+                                "authentication": {
+                                    "audience": "@triggerBody()?['Audience']",
+                                    "clientId": "@triggerBody()?['ClientID']",
+                                    "secret": "@triggerBody()?['Secret']",
+                                    "tenant": "@triggerBody()?['TenantID']",
+                                    "type": "ActiveDirectoryOAuth"
+                                },
+                                "body": {
+                                    "inviteRedirectUrl": "@triggerBody()?['RedirectURL']",
+                                    "invitedUserEmailAddress": "@triggerBody()?['UPN']",
+                                    "sendInvitationMessage": true
+                                },
+                                "method": "POST",
+                                "uri": "https://graph.microsoft.com/v1.0/invitations"
+                            },
+                            "runAfter": {},
+                            "type": "Http"
+                        },
+                        "Set_variable_3": {
+                            "inputs": {
+                                "name": "ExistingUserID",
+                                "value": "@{body('HTTP_2')['invitedUser']['id']}"
+                            },
+                            "runAfter": {
+                                "HTTP_2": [
+                                    "Succeeded"
+                                ]
+                            },
+                            "type": "SetVariable"
+                        }
+                    }
+                },
+                "expression": {
+                    "and": [
+                        {
+                            "equals": [
+                                "@outputs('HTTP_Get_User')['statusCode']",
+                                200
+                            ]
+                        }
+                    ]
+                },
+                "runAfter": {
+                    "HTTP_Get_User": [
+                        "Succeeded",
+                        "Failed"
+                    ]
+                },
+                "type": "If"
+            },
+            "Condition_2": {
+                "actions": {},
+                "else": {
+                    "actions": {
+                        "Set_variable": {
+                            "inputs": {
+                                "name": "UserEmailID",
+                                "value": "@{replace(triggerBody()?['UPN'],'@','_')}%23EXT%23@@{triggerBody()?['TenantName']}.onmicrosoft.com"
+                            },
+                            "runAfter": {},
+                            "type": "SetVariable"
+                        }
+                    }
+                },
+                "expression": {
+                    "or": [
+                        {
+                            "contains": [
+                                "@triggerBody()?['UPN']",
+                                "@concat('@',triggerBody()?['TenantName'],'onmicrosoft.com')"
+                            ]
+                        },
+                        {
+                            "endsWith": [
+                                "@triggerBody()?['UPN']",
+                                "@triggerBody()?['DomainName']"
+                            ]
+                        }
+                    ]
+                },
+                "runAfter": {
+                    "Set_User_Email_ID": [
+                        "Succeeded"
+                    ]
+                },
+                "type": "If"
+            },
+            "HTTP": {
+                "inputs": {
+                    "authentication": {
+                        "audience": "@triggerBody()?['Audience']",
+                        "clientId": "@triggerBody()?['ClientID']",
+                        "secret": "@triggerBody()?['Secret']",
+                        "tenant": "@triggerBody()?['TenantID']",
+                        "type": "ActiveDirectoryOAuth"
+                    },
+                    "method": "GET",
+                    "uri": "https://graph.microsoft.com/v1.0/groups?$select=id&$top=1&$filter=displayName eq '@{triggerBody()?['M365GroupName']}'"
+                },
+                "runAfter": {
+                    "Condition:_Invite_User_if_not_in_the_AD": [
+                        "Succeeded"
+                    ]
+                },
+                "type": "Http"
+            },
+            "HTTP_Get_User": {
+                "inputs": {
+                    "authentication": {
+                        "audience": "@triggerBody()?['Audience']",
+                        "clientId": "@triggerBody()?['ClientID']",
+                        "secret": "@triggerBody()?['Secret']",
+                        "tenant": "@triggerBody()?['TenantID']",
+                        "type": "ActiveDirectoryOAuth"
+                    },
+                    "method": "GET",
+                    "uri": "https://graph.microsoft.com/v1.0/users/@{variables('UserEmailID')}"
+                },
+                "runAfter": {
+                    "Set_Existing_User_ID": [
+                        "Succeeded"
+                    ]
+                },
+                "type": "Http"
+            },
+            "Initialize_User_Count": {
+                "inputs": {
+                    "variables": [
+                        {
+                            "name": "UserCount",
+                            "type": "integer",
+                            "value": 0
+                        }
+                    ]
+                },
+                "runAfter": {
+                    "Initialize_variable_2": [
+                        "Succeeded"
+                    ]
+                },
+                "type": "InitializeVariable"
+            },
+            "Initialize_variable": {
+                "inputs": {
+                    "variables": [
+                        {
+                            "name": "GraphURL",
+                            "type": "string",
+                            "value": "https://graph.microsoft.com/v1.0/invitations"
+                        }
+                    ]
+                },
+                "runAfter": {
+                    "Condition_2": [
+                        "Succeeded"
+                    ]
+                },
+                "type": "InitializeVariable"
+            },
+            "Initialize_variable_2": {
+                "inputs": {
+                    "variables": [
+                        {
+                            "name": "Groupid",
+                            "type": "string",
+                            "value": "@{body('HTTP')['value'][0]['id']}"
+                        }
+                    ]
+                },
+                "runAfter": {
+                    "Parse_JSON_M365_Group_Response": [
+                        "Succeeded"
+                    ]
+                },
+                "type": "InitializeVariable"
+            },
+            "Parse_JSON_M365_Group_Response": {
+                "inputs": {
+                    "content": "@body('HTTP')",
+                    "schema": {
+                        "properties": {
+                            "@@odata.context": {
+                                "type": "string"
+                            },
+                            "value": {
+                                "items": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "required": [
+                                        "id"
+                                    ],
+                                    "type": "object"
+                                },
+                                "type": "array"
+                            }
+                        },
+                        "type": "object"
+                    }
+                },
+                "runAfter": {
+                    "HTTP": [
+                        "Succeeded"
+                    ]
+                },
+                "type": "ParseJson"
+            },
+            "Response": {
+                "inputs": {
+                    "body": "@variables('ExistingUserID')",
+                    "statusCode": 200
+                },
+                "kind": "Http",
+                "runAfter": {
+                    "Condition:_Add_user_if_not_in_the_group": [
+                        "Succeeded"
+                    ]
+                },
+                "type": "Response"
+            },
+            "Set_Existing_User_ID": {
+                "inputs": {
+                    "variables": [
+                        {
+                            "name": "ExistingUserID",
+                            "type": "string"
+                        }
+                    ]
+                },
+                "runAfter": {
+                    "Initialize_variable": [
+                        "Succeeded"
+                    ]
+                },
+                "type": "InitializeVariable"
+            },
+            "Set_User_Email_ID": {
+                "inputs": {
+                    "variables": [
+                        {
+                            "name": "UserEmailID",
+                            "type": "string"
+                        }
+                    ]
+                },
+                "runAfter": {},
+                "type": "InitializeVariable"
+            }
+        },
+        "contentVersion": "1.0.0.0",
+        "outputs": {},
+        "parameters": {},
+        "triggers": {
+            "manual": {
+                "inputs": {
+                    "schema": {
+                        "properties": {
+                            "ActionName": {
+                                "type": "string"
+                            },
+                            "Audience": {
+                                "type": "string"
+                            },
+                            "ClientID": {
+                                "type": "string"
+                            },
+                            "CreatedBy": {
+                                "type": "string"
+                            },
+                            "DomainName": {
+                                "type": "string"
+                            },
+                            "M365GroupName": {
+                                "type": "string"
+                            },
+                            "RedirectURL": {
+                                "type": "string"
+                            },
+                            "RoleName": {
+                                "type": "string"
+                            },
+                            "SPGroupName": {
+                                "type": "string"
+                            },
+                            "Secret": {
+                                "type": "string"
+                            },
+                            "SiteURL": {
+                                "type": "string"
+                            },
+                            "TenantID": {
+                                "type": "string"
+                            },
+                            "TenantName": {
+                                "type": "string"
+                            },
+                            "UPN": {
+                                "type": "string"
+                            },
+                            "UserEmail": {
+                                "type": "string"
+                            },
+                            "UserType": {
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    }
+                },
+                "kind": "Http",
+                "type": "Request"
+            }
+        }
+    },
+    "parameters": {}
+}
